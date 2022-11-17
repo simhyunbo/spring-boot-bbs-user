@@ -3,12 +3,14 @@ package com.mustache.bbs5.domain;
 import com.mustache.bbs5.domain.dto.UserDto;
 import com.mustache.bbs5.domain.dto.UserResponse;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -22,14 +24,5 @@ public class User {
 
     private String password;
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
 
-    public static UserResponse of(User user) {
-        return new UserResponse(user.getId(),
-               user.getUsername());
-
-    }
 }
