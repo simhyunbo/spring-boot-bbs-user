@@ -1,0 +1,17 @@
+server:
+  port: 8081
+  servlet:
+    encoding:
+      force-response: true
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://ec2-15-164-179-84.ap-northeast-2.compute.amazonaws.com/likelion
+    username: root
+    password: 12345678
+
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database : mysql
+    hibernate.ddl-auto : update
