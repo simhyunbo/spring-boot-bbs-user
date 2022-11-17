@@ -27,9 +27,14 @@ public class UserService {
         }
     }
 
-    public UserResponse addUser(UserRequest userRequest){
-        User user = userRequest.toEntity();
-        User savedUser = userRepository.save(user);
-        return new UserResponse(savedUser.getId(), savedUser.getUsername() , "회원 등록 성공");
+    public UserResponse addUser(UserRequest dto) {
+        Optional<User> selectedUser = userRepository.findByUsername(dto.getUsername());
+
+        if(selectedUser.isEmpty()){
+            User savedUser = userRepository.save(dto.toEntity());
+            return new UserResponse(savedUser.getId(), savedUser.getUsername(), "등록이 완료되었습니다.");
+        } else {
+            return new UserResponse(null, dto.getUsername(), "해당 username은 이미 존재합니다.");
+        }
     }
 }
